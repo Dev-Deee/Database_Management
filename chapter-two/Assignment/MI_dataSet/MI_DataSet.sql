@@ -84,6 +84,13 @@ WHERE ShipmentID IN (
 ORDER BY ShipperName ASC, DepartureDate DESC;
 
 # N
+SELECT DISTINCT SHIPMENT.ShipperName,
+       SHIPMENT.ShipmentID,
+       SHIPMENT.DepartureDate
+FROM SHIPMENT
+JOIN SHIPMENT_ITEM ON SHIPMENT.ShipmentID = SHIPMENT_ITEM.ShipmentID
+    WHERE SHIPMENT_ITEM.Value >= 1000.00
+ORDER BY SHIPMENT.ShipperName ASC, SHIPMENT.DepartureDate DESC;
 
 # O
 SELECT ShipperName,
@@ -100,3 +107,17 @@ WHERE ShipmentID IN (
     )
 )
 ORDER BY ShipperName ASC, DepartureDate DESC;
+
+
+# P
+SELECT DISTINCT SHIPMENT.ShipperName,
+           SHIPMENT.ShipmentID,
+           SHIPMENT.DepartureDate
+FROM SHIPMENT, SHIPMENT_ITEM, ITEM
+    WHERE SHIPMENT.ShipmentID = SHIPMENT_ITEM.ShipmentItemID AND
+        SHIPMENT_ITEM.ItemID = ITEM.ItemID AND
+        ITEM.City = 'Singapore'
+ORDER BY SHIPMENT.ShipperName ASC, SHIPMENT.DepartureDate DESC;
+
+# Q 144
+
